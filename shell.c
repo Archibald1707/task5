@@ -55,7 +55,7 @@ char* getWord(FILE *filePointer)
                     quotesFlag = 0;
                 break;
         }
-        if ((temporarySymbol == '<')||(temporarySymbol == ')')||(temporarySymbol == '(')||(temporarySymbol == '>')||(temporarySymbol == '|')||(temporarySymbol == '&'))
+        if (((temporarySymbol == '<')||(temporarySymbol == ')')||(temporarySymbol == '(')||(temporarySymbol == '>')||(temporarySymbol == '|')||(temporarySymbol == '&'))&&(quotesFlag % 2 == 0))
         {
             wordToList = realloc(wordToList, argument + MEMORY_CHUNK);
             if(argument != 0)
@@ -126,7 +126,7 @@ void specialSymbolDivision(ListOfWord *headInput)
     {
         while((head->word)[i] != '\0')
         {
-            if(((head->word)[i] == '<')||((head->word)[i] == '>')||((head->word)[i] == '(')||((head->word)[i] == ')')||((head->word)[i] == '&')||((head->word)[i] == '|'))
+            if((((head->word)[i] == '<')||((head->word)[i] == '>')||((head->word)[i] == '(')||((head->word)[i] == ')')||((head->word)[i] == '&')||((head->word)[i] == '|'))&&(head->word[i-1] == '\n'))
             {
                 newWord = malloc(MEMORY_CHUNK*sizeof(char));
                 newWord[0] = (head->word)[i];
